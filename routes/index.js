@@ -1,22 +1,18 @@
 const routes = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 
-const { createUser, login } = require('../controllers/users');
+const { register, login } = require('../controllers/users');
 const userRoutes = require('./users');
-const cardsRoutes = require('./cards');
+const moviesRoutes = require('./movies');
 const auth = require('../middlewares/auth');
-
-const regularExpression = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=]*)/;
 
 routes.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().pattern(regularExpression),
     email: Joi.string().required().email(),
-    password: Joi.string().required(),
+    password: Joi.string().required().min(6),
   }),
-}), createUser);
+}), register);
 
 routes.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -26,6 +22,6 @@ routes.post('/signin', celebrate({
 }), login);
 
 routes.use('/users', auth, userRoutes);
-routes.use('/cards', auth, cardsRoutes);
+routes.use('/movies', auth, moviesRoutes);
 
 module.exports = routes;

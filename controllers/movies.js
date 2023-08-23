@@ -49,7 +49,7 @@ module.exports.saveMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.movieId)
+  Movie.findById(req.params._id)
     .orFail(() => new NotFound('Фильм не найден'))
     .then((movie) => {
       if (`${movie.owner}` !== req.user._id) {
