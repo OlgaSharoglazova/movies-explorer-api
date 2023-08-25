@@ -18,9 +18,9 @@ module.exports.saveMovie = (req, res, next) => {
     description,
     image,
     trailer,
+    thumbnail,
     nameRU,
     nameEN,
-    thumbnail,
   } = req.body;
 
   Movie.create({
@@ -31,9 +31,9 @@ module.exports.saveMovie = (req, res, next) => {
     description,
     image,
     trailer,
+    thumbnail,
     nameRU,
     nameEN,
-    thumbnail,
     owner: req.user._id,
   })
     .then((movie) => res.send(movie))
@@ -47,7 +47,7 @@ module.exports.saveMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findById(req.params._id)
+  Movie.findById(req.params.ObjectId)
     .orFail(() => new NotFound('Фильм не найден'))
     .then((movie) => {
       if (`${movie.owner}` !== req.user._id) {
