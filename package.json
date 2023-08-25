@@ -24,7 +24,8 @@
     "express-winston": "^4.2.0",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.3",
-    "validator": "^13.11.0"
+    "validator": "^13.11.0",
+    "winston": "^3.10.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

@@ -3,7 +3,7 @@ const { celebrate, Joi } = require('celebrate');
 const {
   getMovies,
   deleteMovie,
-  addMovie,
+  saveMovie,
 } = require('../controllers/movies');
 
 const regularExpression = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=]*)/;
@@ -20,13 +20,12 @@ moviesRoutes.post('/', celebrate({
     image: Joi.string().required().pattern(regularExpression),
     trailer: Joi.string().required().pattern(regularExpression),
     thumbnail: Joi.string().required().pattern(regularExpression),
-    movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
   }),
-}), addMovie);
+}), saveMovie);
 
-moviesRoutes.delete('/_id', celebrate({
+moviesRoutes.delete(':/_id', celebrate({
   params: Joi.object().keys({
     _id: Joi.string().required().hex().length(24),
   }),

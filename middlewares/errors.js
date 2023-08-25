@@ -1,4 +1,4 @@
-const { DEFAULT_ERROR } = require('../utils/constants');
+const DEFAULT_ERROR = 500;
 
 module.exports = (err, _req, res, next) => {
   const { statusCode = DEFAULT_ERROR, message } = err;
