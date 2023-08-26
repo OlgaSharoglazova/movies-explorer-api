@@ -3,8 +3,9 @@ const NotFound = require('../errors/notFound');
 const BadRequest = require('../errors/badRequest');
 const Forbidden = require('../errors/forbidden');
 
-module.exports.getMovies = (_req, res, next) => {
-  Movie.find({})
+module.exports.getMovies = (req, res, next) => {
+  const owner = req.user._id;
+  Movie.find({ owner })
     .then((movies) => res.send(movies))
     .catch(next);
 };
@@ -17,8 +18,9 @@ module.exports.saveMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     thumbnail,
+    movieId,
     nameRU,
     nameEN,
   } = req.body;
@@ -30,8 +32,9 @@ module.exports.saveMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     thumbnail,
+    movieId,
     nameRU,
     nameEN,
     owner: req.user._id,
