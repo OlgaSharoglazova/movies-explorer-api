@@ -5,6 +5,7 @@ const { register, login } = require('../controllers/users');
 const userRoutes = require('./users');
 const moviesRoutes = require('./movies');
 const auth = require('../middlewares/auth');
+const NotFound = require('../errors/notFound');
 
 routes.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -23,5 +24,8 @@ routes.post('/signin', celebrate({
 
 routes.use('/users', auth, userRoutes);
 routes.use('/movies', auth, moviesRoutes);
+routes.use('*', auth, (_req, _res, next) => {
+  next(new NotFound('Страница не найдена'));
+});
 
 module.exports = routes;
