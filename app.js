@@ -7,7 +7,9 @@ const errorsCode = require('./middlewares/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
 
-const { PORT, DB_URL } = process.env;
+const DB_URL = require('./utils/config');
+
+const { PORT } = process.env;
 const app = express();
 
 app.use(express.json());
