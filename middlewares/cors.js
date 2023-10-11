@@ -3,6 +3,8 @@ const ALLOWED_CORS = [
   'http://localhost:3000',
   'http://localhost:3001',
   'https://busik.nomoredomainsicu.ru',
+  'https://109.163.217.30',
+  'http://109.163.217.30',
 ];
 
 module.exports = (req, res, next) => {
