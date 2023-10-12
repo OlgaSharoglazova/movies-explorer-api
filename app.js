@@ -7,13 +7,13 @@ const errorsCode = require('./middlewares/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
 
-const DB_URL = require('./utils/config');
+const { DB_URL } = require('./utils/config');
 
 const { PORT } = process.env;
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors);
 
 app.use(requestLogger);
 
