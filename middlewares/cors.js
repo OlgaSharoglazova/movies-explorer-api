@@ -1,6 +1,10 @@
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 const ALLOWED_CORS = [
-  'https://bsk.nomoreparties.co',
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://busik.nomoredomainsicu.ru',
+  'https://109.163.217.30',
+  'http://109.163.217.30',
 ];
 
 module.exports = (req, res, next) => {
