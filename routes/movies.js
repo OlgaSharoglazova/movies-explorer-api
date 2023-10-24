@@ -28,7 +28,7 @@ moviesRoutes.post('/', celebrate({
 
 moviesRoutes.delete('/:_id', celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().required(),
+    _id: Joi.string().required(),
   }),
 }), deleteMovie);
 
